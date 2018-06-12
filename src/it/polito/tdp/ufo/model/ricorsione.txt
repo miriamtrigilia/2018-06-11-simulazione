@@ -1,0 +1,19 @@
+Soluzione completa = percorso nel grafo => sequenza di veritici(List<String>)
+in cui il primo vertice sia lo stato di partenza
+e non vi siano veritici ripetuti
+
+Soluzione parziale = percorso parziale
+
+Condizione di terminazione = lo stato terminale della soluzione parziale non ha più 
+nessuno stato successore che non sia ancora stato considerato nella sequenza
+
+Generazione di una nuova soluzione = trovare tutti i successori dello stato finale 
+non ancora inseriti
+
+Nella condizione di terminazione devo restituire UNA sola soluzione
+quella per cui .size() è massima
+
+Livello della ricorsione = lunghezza del percorso parziale
+
+
+Caso iniziale(livello 1) : [stato di partenza]

@@ -18,6 +18,8 @@ public class Model {
 	private List<String> stati;
 	private Graph<String, DefaultEdge> graph;
 	
+	private List<String> ottima;
+	
 	public List<AnnoCount> getAnniAvvistamenti(){
 		SightingsDAO dao = new SightingsDAO();
 		
@@ -67,6 +69,41 @@ public class Model {
 		}
 		return raggiungibili;
 	}
+	
+	// SOLUZIONE PUNTO 2 
+	//caso finale (ricorsione)
+	public List<String> getPercorsoMassimo(String partenza) {
+		this.ottima = new ArrayList<String>();
+		List<String> parziale = new ArrayList<>();
+		parziale.add(partenza);
+		
+		cercaSequenza(parziale);
+		
+		return this.ottima;
+	}
+	
+	//caso medio(ricorsione)
+	private void cercaSequenza(List<String> parziale) {
+		
+		// caso terminale
+		if(parziale.size() > this.ottima.size()) {
+			this.ottima = new ArrayList<String>(parziale); // deep copy
+		}
+		
+		// ricorsione
+		List<String> candidati = this.getStatiSuccesivi(parziale.get(parziale.size()-1)); // i candidati sono tutti i successivi all'ultimo elemento della lista parziale
+		for(String prova : candidati) {
+			if(!parziale.contains(prova)) { // se ho problemi di efficienza sostituisco a list -> set (candidati)
+				// provo ad aggiungerlo
+				parziale.add(prova);
+				this.cercaSequenza(parziale);
+				parziale.remove(parziale.size()-1);
+			}
+		}
+	
+	}
+	
+	
 	
 	public List<String> getStati(){
 		return this.stati;
