@@ -42,7 +42,7 @@ public class Model {
 				}
 			}
 		}
-		
+		// VEDI ALTERNATIVA CON QUERI.. SU GITHUB (ULTIMI MINUTI LEZIONE 12.06.2018)
 		System.out.println(this.graph.vertexSet().size()+" "+ this.graph.edgeSet().size());
 	}
 	
